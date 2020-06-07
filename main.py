@@ -43,6 +43,7 @@ wait(4)
 
 # specific chat
 element = browser.find_element_by_xpath("//body")
+# use the lines below until the print statement to navigate to a specific chat by repeating 'element.send_keys(Keys.ALT, Keys.ARROW_UP)' or 'element.send_keys(Keys.ALT, Keys.ARROW_DOWN)' 
 element.send_keys(Keys.ALT, Keys.ARROW_UP)
 print("Accessed specific chat.\n\n")
 
