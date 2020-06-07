@@ -75,6 +75,7 @@ finalMsgs = set(messages)
 def exportMessages():
     file = open("messages.txt", "w")
     for msg in finalMsgs:
+        msg.strip()
         record = f"{msg}, \n"
         try:
             file.write(record)
