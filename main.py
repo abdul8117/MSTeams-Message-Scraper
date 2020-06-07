@@ -10,7 +10,7 @@ browser.get("https://teams.microsoft.com")
 browser.implicitly_wait(10)
 
 def wait(timeToWait):
-  time.sleep(timeToWait)
+    time.sleep(timeToWait)
 
 # enters in your email
 email_input = browser.find_element_by_css_selector("input[name='loginfmt']")
@@ -34,7 +34,7 @@ print("Signed in.")
 
 wait(50)
 
-# click on the chat button
+# clicks on the chat button
 # its id = "app-bar-86fcd49b-61a2-4701-b771-54728cd291fb"
 chat_button = browser.find_element_by_id("app-bar-86fcd49b-61a2-4701-b771-54728cd291fb")
 chat_button.click()
@@ -51,33 +51,36 @@ wait(60)
 print("Starting to scrape...")
 
 # find, scrape all messages, and store them in messages.txt w/BeatifulSoup
-# scrape msgs, PgUp, append to list
+# loop: scrape msgs, PgUp, append to list
 
 count = 0
 messages = []
 
 while count <= 1500:
-  soup = BeautifulSoup(browser.page_source, features="html.parser")
-  msgs = soup.findAll("div", class_="message-body-container")
-  
-  for msg in msgs:
-    messages.append(msg.text)
-    print(msg.text, "\n")
-    
-  # MANUALLY CLICK AWAY FROM THE MESSAGE INPUT BOX
-  element.send_keys(Keys.PAGE_UP)
-  
-  count += 1
-  print(count)
+    soup = BeautifulSoup(browser.page_source, features="html.parser")
+    msgs = soup.findAll("div", class_="message-body-container")
+
+    for msg in msgs:
+        messages.append(msg.text)
+        print(f"{msg.text}, \n")
+
+    # MANUALLY CLICK AWAY FROM THE MESSAGE INPUT BOX
+    element.send_keys(Keys.PAGE_UP)
+
+    count += 1
+    print(count)
 
 finalMsgs = set(messages)
 
 def exportMessages():
-  file = open("messages.txt", "w")
-  for msg in finalMsgs:
-    record = f"{msg}, \n"
-    file.write(record)
-  file.close()
+    file = open("messages.txt", "w")
+    for msg in finalMsgs:
+        record = f"{msg}, \n"
+        try:
+            file.write(record)
+        except:
+            continue
+    file.close()
 
 exportMessages()
 
