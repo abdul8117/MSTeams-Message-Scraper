@@ -8,5 +8,5 @@ The three dependencies below are required in order to run the script.
 * **Firefox WebDrivers:**
   * Download Firefox's geckodriver.exe file from: https://github.com/mozilla/geckodriver/releases
   * Save this file under the Python folder in your PATH
-* **BeautifulSoup:4**
+* **BeautifulSoup4:**
   * ``pip install beautifulsoup`` on windows
